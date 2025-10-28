@@ -5,10 +5,8 @@
 
 set -e  # Para em caso de erro
 
-echo "=========================================="
 echo "   Instalação Automatizada - ELK Stack"
 echo "   SIEM Caseiro"
-echo "=========================================="
 echo ""
 
 # Função para verificar se comando existe
@@ -22,18 +20,18 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-echo -e "${YELLOW}[1/7] Atualizando sistema...${NC}"
+echo -e "${YELLOW}[1/7] Atualizando sistema${NC}"
 sudo apt update -qq
 
-echo -e "${YELLOW}[2/7] Instalando dependências...${NC}"
+echo -e "${YELLOW}[2/7] Instalando dependências${NC}"
 sudo apt install -y wget curl gnupg apt-transport-https openjdk-11-jdk > /dev/null 2>&1
 
-echo -e "${YELLOW}[3/7] Adicionando repositório Elastic...${NC}"
+echo -e "${YELLOW}[3/7] Adicionando repositório Elastic${NC}"
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list > /dev/null
 sudo apt update -qq
 
-echo -e "${YELLOW}[4/7] Instalando Elasticsearch...${NC}"
+echo -e "${YELLOW}[4/7] Instalando Elasticsearch${NC}"
 sudo apt install -y elasticsearch > /dev/null 2>&1
 
 # Configurar Elasticsearch
@@ -52,7 +50,7 @@ EOF
 
 echo -e "${GREEN}✓ Elasticsearch configurado${NC}"
 
-echo -e "${YELLOW}[5/7] Instalando Kibana...${NC}"
+echo -e "${YELLOW}[5/7] Instalando Kibana${NC}"
 sudo apt install -y kibana > /dev/null 2>&1
 
 # Configurar Kibana
@@ -65,7 +63,7 @@ EOF
 
 echo -e "${GREEN}✓ Kibana configurado${NC}"
 
-echo -e "${YELLOW}[6/7] Instalando Filebeat...${NC}"
+echo -e "${YELLOW}[6/7] Instalando Filebeat${NC}"
 sudo apt install -y filebeat > /dev/null 2>&1
 
 # Configurar Filebeat
